@@ -1,3 +1,5 @@
+import { ADD_FEATURE, REMOVE_FEATURE } from '../actions/actions';
+
 
 
 //STEP 1 -- Create a reducer and set up the initialState
@@ -19,8 +21,37 @@ export const initialState = {
   };
 
 export const reducer = (state = initialState, action) => {
-    // console.log(`This is redux store`)
+    // console.log(`This is redux store STATE`, state)
     switch(action.type) {
+        case ADD_FEATURE:
+            return {
+                ...state,
+                car: {
+                ...state.car, 
+                features: 
+                [
+                ...state.car.features,
+                //instead of writing action.payload we will use dot notation
+                {id: action.payload.id, name: action.payload.name, price: action.payload.price}
+            ],
+                price: state.car.price + action.payload.price, 
+            },
+                additionalFeatures: state.additionalFeatures.filter(item => item.id !== action.payload.id)
+
+                
+            }
+
+        case REMOVE_FEATURE:
+            return {
+                ...state,
+                car: {
+                ...state.car,
+                features: state.car.features.filter((item) => { return item.id !== action.payload.id}),
+                price: state.car.price - action.payload.price, 
+                }
+                    
+                }
+
         default:
             return state;
     }

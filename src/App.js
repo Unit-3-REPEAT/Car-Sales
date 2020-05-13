@@ -6,7 +6,7 @@ import AdditionalFeatures from './components/AdditionalFeatures';
 import Total from './components/Total';
 import {connect} from 'react-redux';
 
-const App = (props) => {
+const App = () => {
     // console.log(`props inside App -->`, props)
  
 
@@ -14,11 +14,11 @@ const App = (props) => {
     <div className="boxes">
       <div className="box">
         <Header/>
-        <AddedFeatures car={props.state.car} />
+        <AddedFeatures/>
       </div>
       <div className="box">
-        <AdditionalFeatures additionalFeatures={props.state.additionalFeatures} />
-        <Total car={props.state.car} additionalPrice={props.state.additionalPrice} />
+        <AdditionalFeatures />
+        <Total />
       </div>
     </div>
   );
@@ -32,6 +32,7 @@ const mapStateToProps = state => {
     state    
   }
 }
+
 export default connect (
   mapStateToProps,
   {}

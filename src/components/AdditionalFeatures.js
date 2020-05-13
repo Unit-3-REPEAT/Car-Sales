@@ -1,7 +1,11 @@
 import React from 'react';
 import AdditionalFeature from './AdditionalFeature';
+import {connect} from 'react-redux';
 
 const AdditionalFeatures = props => {
+
+  // console.log(`this is props inside AdditionalFeatures`, props);
+
   return (
     <div className="content">
       <h4>Additional Features</h4>
@@ -18,4 +22,18 @@ const AdditionalFeatures = props => {
   );
 };
 
-export default AdditionalFeatures;
+
+const mapStateToProps = state => {
+  // console.log(`mSTP is working`, state);
+  return {
+    //We want the state to be returned because we want the entire object
+    additionalFeatures: state.additionalFeatures,
+    features: state.car.features   
+  }
+}
+
+
+export default connect (
+  mapStateToProps,
+  {} // this takes in action creator
+)(AdditionalFeatures);

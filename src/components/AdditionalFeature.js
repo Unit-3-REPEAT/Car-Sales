@@ -1,17 +1,19 @@
 import React from 'react';
-//Step 3 - part of step 3
 import {connect} from 'react-redux';
+import {addFeature} from '../actions/actions';
 
 //Connect is kinda like custom hooks in sence that is meant to
 //extend logic onto components
 
 const AdditionalFeature = props => {
-  console.log(`props`, props)
+  // console.log(`props inside AdditionalFeature`, props.feature)
   
   return (
     <li>
       {/* Add an onClick that will let you add a feature to your car */}
-      <button className="button">Add</button>
+      <button 
+      onClick={() => props.addFeature(props.feature)}
+      className="button">Add</button>
       {props.feature.name} (+{props.feature.price})
     </li>
   );
@@ -21,18 +23,14 @@ const AdditionalFeature = props => {
 //mSTP bring the state from reducer into the props of the AdditionalFeature component
 //and merges them together - it returns the object and each property is added to the props
 //of the connected component
-const mapStateToProps = state => {
-  console.log(`mSTP is working`, state);
-  return {
-    name: "banana",
-    
-  }
-}
+
+
+
 
 //Step 3 connect component to the redux store - import connect
 export default connect (
-  mapStateToProps,
-  {} // this takes in action creator
+  null,
+  {addFeature} // this takes in action creator
 )(AdditionalFeature);
 
 //connect gets called twice
